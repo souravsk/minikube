@@ -1,0 +1,18 @@
+#Create a Persistent Volume 
+#create a Persistent Volume called 'pv-data' in the default namespace.
+#set the storage amount to 1Gi and the storage class to static.
+#Use a host path to mount the host dircetory /var/pvdata with the persistent volume.
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-data
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: static
+  hostPath:
+    path: /var/pvdata

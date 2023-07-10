@@ -1,0 +1,30 @@
+#Fix a deploymen with a incorrect Image Name.
+#A Deployment in the default namespace is not working correctly due to a misspelled image name. Identify which devployment is broken and fix the issue
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: ngin:1.14.2
+        ports:
+        - containerPort: 80
+
+#so in this case we have something wrong with image so to slove this issue.
+#first i will check the deployment is running or not mostly it will not because the somthing worng with the image of couse.
+#then i will look into pods and use the describe to describe on of the pod to see what's creating the problem.
+#I can see that the image is not able to pull looks like the image name is missplered.
+#use kubectl edit deploy nginx-deploymet command to eddit the deploymetn.
+#save it and it's working.
