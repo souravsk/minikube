@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webpage
+  namespace: default
+data:
+  index.html: |
+    <html>
+    <h1 align="center">NodePort Services </h1>
+    <h2 align="center"> This is the web page that is accessed by using kubernetes services and the type is NodePort </h2>
+    </html>
